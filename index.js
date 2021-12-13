@@ -1,18 +1,14 @@
 const express = require('express');
 const app = express();
-const notesRoutes = require('./routes/notes');
-const cors = require('cors');
-
-
-app.use(cors);
-app.use(express.json());
-
-app.use('/notes', notesRoutes);
-
-
-
+const noteRoutes = require('./routes/notes');
 const port = 8087;
 
-app.listen(port, () => {
-  console.log(`App running on port: ${port}`);
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 });
+
+app.use('/notes', noteRoutes);
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
